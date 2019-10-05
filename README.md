@@ -9,6 +9,9 @@ This repository contains work completed for a Udacity Project as part of RMITs I
 `README.md`\
 `bikeshare.py`
 
+### Requirements
+Pandas
+
 ### Credits
 Various Stackoverflow posts, including:\
 https://stackoverflow.com/questions/14281871/given-a-pandas-series-that-represents-frequencies-of-a-value-how-can-i-turn-tho \
