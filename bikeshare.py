@@ -159,19 +159,19 @@ def time_stats(df, month=0, day=0):
     start_time = time.time()
 
     # display the most common month
-    monthsofyear = []
+    months = []
     for i in range(1, 13):
-        monthsofyear.append(datetime.date(2019, i, 1).strftime('%B'))
+        months.append(datetime.date(2019, i, 1).strftime('%B'))
     if month == 0:
-        common_month = monthsofyear[int(df['start_time'].dt.month.mode().values[0])]
+        common_month = months[int(df['start_time'].dt.month.mode().values[0])]
         print('The most common month for starting trips is ' + common_month)
 
     # display the most common day of week
-    daysofweek = []
+    days = []
     for i in range(1, 8):
-        daysofweek.append(datetime.date(2019, 4, i).strftime('%A'))
+        days.append(datetime.date(2019, 4, i).strftime('%A'))
     if day == 0:
-        common_day = daysofweek[int(df['start_time'].dt.dayofweek.mode().values[0])]
+        common_day = days[int(df['start_time'].dt.dayofweek.mode().values[0])]
         print('The most common day for starting trips is ' + common_day)
 
     # display the most common start hour
@@ -255,15 +255,15 @@ def trip_duration_stats(df):
 
     # Print trip statistics
     print('Trip Duration Statistics\n' + '-' * 40)
-    spacing = 17
-    print('Mean:'.ljust(spacing) + duration_mean.rjust(42))
-    print('Standard Dev:'.ljust(spacing) + duration_std.rjust(42))
-    print('Maximum:'.ljust(spacing) + duration_max.rjust(42))
-    print('Minimum:'.ljust(spacing) + duration_min.rjust(42))
-    print('25th Percentile:'.ljust(spacing) + duration_25.rjust(42))
-    print('50th Percentile:'.ljust(spacing) + duration_50.rjust(42))
-    print('75th Percentile:'.ljust(spacing) + duration_75.rjust(42))
-    print('All Trips Sum:'.ljust(spacing) + duration_sum.rjust(42))
+    text_width = 17
+    print('Mean:'.ljust(text_width) + duration_mean.rjust(42))
+    print('Standard Dev:'.ljust(text_width) + duration_std.rjust(42))
+    print('Maximum:'.ljust(text_width) + duration_max.rjust(42))
+    print('Minimum:'.ljust(text_width) + duration_min.rjust(42))
+    print('25th Percentile:'.ljust(text_width) + duration_25.rjust(42))
+    print('50th Percentile:'.ljust(text_width) + duration_50.rjust(42))
+    print('75th Percentile:'.ljust(text_width) + duration_75.rjust(42))
+    print('All Trips Sum:'.ljust(text_width) + duration_sum.rjust(42))
 
     print("\nThis took %s seconds." % round(time.time() - start_time, 3))
     print('-'*40)
@@ -304,13 +304,13 @@ def user_stats(df):
 
     # Calculate earliest, most recent, and most common year of birth
     if 'birth_year' in df:
-        youngest = int(df['birth_year'].dropna(axis=0).max())
-        oldest = int(df['birth_year'].dropna(axis=0).min())
-        commonest = int(df['birth_year'].dropna(axis=0).mode()[0])
+        birthyear_max = int(df['birth_year'].dropna(axis=0).max())
+        birthyear_min = int(df['birth_year'].dropna(axis=0).min())
+        birthyear_mode = int(df['birth_year'].dropna(axis=0).mode()[0])
         print('\nBirth Year Statistics\n' + '-'*40)
-        print('Oldest Birth Year is     : {}'.format(str(oldest)))
-        print('Youngest Birth Year is   : {}'.format(str(youngest)))
-        print('Most Common Birth Year is: {}'.format(str(commonest)))
+        print('Oldest Birth Year is     : {}'.format(str(birthyear_min)))
+        print('Youngest Birth Year is   : {}'.format(str(birthyear_max)))
+        print('Most Common Birth Year is: {}'.format(str(birthyear_mode)))
     else:
         print('Sorry, no birth year data available for this city')
 
